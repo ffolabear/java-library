@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="container" style="max-width: 600px">
+
+    <div class="py-5 text-center">
+        <h2>도서 목록</h2>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary float-end"
+                    onclick=""
+                    th:onclick=""
+                    type="button">도서 등록
+            </button>
+        </div>
+    </div>
+
+    <hr class="my-4">
+
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>도서 제목</th>
+                <th>수량</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <!--      모델에 있는 item 꺼내기      -->
+            <tr th:each="book : ${bookStorage}">
+                <td><a th:text="${book.id}">회원id</a></td>
+                <td><a th:text="${book.title}">상품명</a></td>
+                <td th:text="${book.quantity}">10</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>
