@@ -1,4 +1,4 @@
-package com.project.javalibrary.domain;
+package com.project.javalibrary.domain.book;
 
 import lombok.Data;
 
