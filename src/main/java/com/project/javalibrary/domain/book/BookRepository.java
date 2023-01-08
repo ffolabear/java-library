@@ -1,4 +1,4 @@
-package com.project.javalibrary.domain;
+package com.project.javalibrary.domain.book;
 
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +13,7 @@ public class BookRepository {
     private static final Map<Long, Book> bookStorage = new HashMap<>();
     private static long sequence = 0L;
 
-    public Book registerBook(Book book) {
+    public Book save(Book book) {
         book.setId(++sequence);
         bookStorage.put(book.getId(), book);
         return book;
