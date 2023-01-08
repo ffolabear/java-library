@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <link th:href="@{/css/bootstrap.min.css}"
           href="../css/bootstrap.min.css" rel="stylesheet">
-    <title>Title</title>
+    <link th:href="@{css/default.css}"
+          href="../css/default.css" rel="stylesheet">
+    <title>도서 목록</title>
 </head>
 <body>
 
@@ -30,17 +32,16 @@
         <table class="table">
             <thead>
             <tr>
-                <th>ID</th>
+                <th>도서 ID</th>
                 <th>도서 제목</th>
                 <th>수량</th>
             </tr>
             </thead>
             <tbody>
-
-            <!--      모델에 있는 item 꺼내기      -->
+            <!--      모델에 있는 book 꺼내기      -->
             <tr th:each="book : ${bookStorage}">
-                <td><a th:text="${book.id}">회원id</a></td>
-                <td><a th:text="${book.title}">상품명</a></td>
+                <td th:text="${book.id}">도서 ID</td>
+                <td><a href="bookDetail.html" th:href="@{|/basic/bookList/${book.id}|}" th:text="${book.title} ">도서 제목</a></td>
                 <td th:text="${book.quantity}">10</td>
             </tr>
 

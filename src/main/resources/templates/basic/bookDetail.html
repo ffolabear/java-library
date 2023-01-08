@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{css/default.css}"
+          href="../css/default.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+    <title>도서 상세정보</title>
+</head>
+<body>
+<div class="container">
+
+    <div class="py-5 text-center">
+        <h2>도서 상세</h2>
+    </div>
+
+    <div>
+        <!--    도서 등록시 출력되는 요소    -->
+        <h2 th:if="${param.status}" th:text="'등록 완료'"></h2>
+        <label for="id">도서 ID</label>
+        <input type="text" id="id" name="id" class="form-control" value="1" th:value="${book.id}" readonly>
+    </div>
+
+    <div>
+        <label for="title">도서명</label>
+        <input type="text" id="title" name="title" class="form-control" value="Java" th:value="${book.title}" readonly>
+    </div>
+    <div>
+        <label for="quantity">수량</label>
+        <input type="text" id="quantity" name="quantity" class="form-control" value="10" th:value="${book.quantity}"
+               readonly>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="row">
+        <div class="col">
+            <button class="w-100 btn btn-primary btn-lg"
+                    onclick="location.href='editBook.html'"
+                    th:onclick="|location.href='@{/basic/bookList/{bookId}/edit(bookId=${book.id})}'|"
+                    type="button">도서 정보 수정
+            </button>
+        </div>
+        <div class="col">
+            <button class="w-100 btn btn-secondary btn-lg"
+                    onclick="location.href='bookList.html'"
+                    th:onclick="|location.href='@{/basic/bookList}'|"
+                    type="button">도서 목록으로
+            </button>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

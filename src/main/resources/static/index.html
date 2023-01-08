@@ -2,15 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{css/bootstrap.min.css}"
+          href="css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{css/default.css}"
+          href="css/default.css" rel="stylesheet">
     <title>도서관 프로젝트</title>
 </head>
 <body>
 
-<li>도서 관리
-    <ul>
-        <li><a href="/basic/bookList">상품 관리 - 기본</a></li>
+<div class="container" style="max-width: 600px">
+
+    <div class="py-5 text-center">
+        <h2>서비스 목록</h2>
+    </div>
+
+    <ul class="list-group">
+
+        <li class="list-group-item">
+            <a href="">
+                도서 대출 서비스
+            </a>
+        </li>
+
+        <li class="list-group-item" aria-current="true">
+            <a href="/basic/bookList">
+                도서 목록
+            </a>
+        </li>
+
     </ul>
-</li>
+
+</div>
+
 
 </body>
 </html>
