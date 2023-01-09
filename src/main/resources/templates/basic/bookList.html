@@ -19,8 +19,8 @@
     <div class="row">
         <div class="col">
             <button class="btn btn-primary float-end"
-                    onclick=""
-                    th:onclick=""
+                    onclick="location.href='addBook.html'"
+                    th:onclick="|location.href='@{/basic/bookList/add}'|"
                     type="button">도서 등록
             </button>
         </div>

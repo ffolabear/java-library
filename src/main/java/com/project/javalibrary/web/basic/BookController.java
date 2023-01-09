@@ -5,10 +5,7 @@ import com.project.javalibrary.domain.book.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.PostConstruct;
@@ -23,7 +20,7 @@ public class BookController {
 
     @GetMapping
     public String bookList(Model model) {
-        List<Book> bookStorage = bookRepository.finaAll();
+        List<Book> bookStorage = bookRepository.findAll();
         model.addAttribute("bookStorage", bookStorage);
         return "basic/bookList";
     }
@@ -35,15 +32,31 @@ public class BookController {
         return "basic/bookDetail";
     }
 
-    @PostMapping
+    @GetMapping("add")
+    public String addForm() {
+        return "basic/addBook";
+    }
+
+    @PostMapping("/add")
     public String registerBook(Book book, RedirectAttributes redirectAttributes) {
         Book registeredBook = bookRepository.save(book);
         redirectAttributes.addAttribute("bookId", registeredBook.getId());
         redirectAttributes.addAttribute("status", true);
-        return "";
+        return "redirect:/basic/bookList/{bookId}";
     }
 
     @GetMapping("/{bookId}/edit")
+    public String editForm(@PathVariable Long bookId, Model model) {
+        Book book = bookRepository.findById(bookId);
+        model.addAttribute("book", book);
+        return "basic/editBook";
+    }
+
+    @PostMapping ("/{bookId}/edit")
+    public String editBook(@PathVariable Long bookId, @ModelAttribute Book book) {
+        bookRepository.update(bookId, book);
+        return "redirect:/basic/bookList/{bookId}";
+    }
 
     @PostConstruct
     public void testDataAdd() {
@@ -52,4 +65,5 @@ public class BookController {
         bookRepository.save(new Book("JavaScript-Basic", 3));
         bookRepository.save(new Book("Clean Code", 7));
     }
+
 }

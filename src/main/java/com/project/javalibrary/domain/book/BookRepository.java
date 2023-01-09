@@ -23,8 +23,14 @@ public class BookRepository {
         return bookStorage.get(id);
     }
 
-    public List<Book> finaAll() {
+    public List<Book> findAll() {
         return new ArrayList<>(bookStorage.values());
+    }
+
+    public void update(Long bookId, Book updateBook) {
+        Book findBook = findById(bookId);
+        findBook.setTitle(updateBook.getTitle());
+        findBook.setQuantity(updateBook.getQuantity());
     }
 
     public void clearStore() {

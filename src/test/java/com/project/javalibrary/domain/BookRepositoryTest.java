@@ -1,6 +1,7 @@
 package com.project.javalibrary.domain;
 
-import org.assertj.core.api.Assertions;
+import com.project.javalibrary.domain.book.Book;
+import com.project.javalibrary.domain.book.BookRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +24,7 @@ public class BookRepositoryTest {
         Book book = new Book("Basic java", 5);
 
         //when
-        Book registeredBook = bookRepository.registerBook(book);
+        Book registeredBook = bookRepository.save(book);
 
         //then
         Book findBook = bookRepository.findById(book.getId());
@@ -35,11 +36,11 @@ public class BookRepositoryTest {
         //given
         Book book1 = new Book("Basic java", 5);
         Book book2 = new Book("Basic Python", 4);
-        bookRepository.registerBook(book1);
-        bookRepository.registerBook(book2);
+        bookRepository.save(book1);
+        bookRepository.save(book2);
 
         //when
-        List<Book> result = bookRepository.finaAll();
+        List<Book> result = bookRepository.findAll();
 
         //then
         assertThat(result.size()).isEqualTo(2);
